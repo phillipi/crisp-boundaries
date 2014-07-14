@@ -1,0 +1,21 @@
+
+
+The issues below only affect UCM segmentation. You can still do boundary detection (“findBoundaries”) even if you were unable to compile the UCM part of the code.
+
+
+
+WINDOWS
+
+UCM segmentation is not supported on Windows. But please email me if you figure out a way to compile UCM on Windows (phillipi@mit.edu).
+
+
+LINUX
+
+If you get an error like "Invalid MEX-file 'path/to/ucm_mean_pb.mexa64': /matlab's/path/to/libstdc++.so.6: version `GLIBCXX_3.4.15' not found", then probably you have the issue explained here: http://www.mlpack.org/trac/ticket/253
+
+You can avoid this issue by compiling with a Matlab supported compiler (Matlab issues a warning if you did not use a supported compiler).
+
+Alternatively, you may be able to resolve this issue by invoking Matlab with "LD_PRELOAD=/path/to/libstdc++.so.6 matlab". Replace the "/path/to/" with the path to your system's install location for libstdc++.
+
+
+

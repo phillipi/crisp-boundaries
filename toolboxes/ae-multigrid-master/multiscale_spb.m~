@@ -1,0 +1,39 @@
+function [spb_arr spbo_arr spb spbo spb_nmax] = multiscale_spb(evecs, evals, pb_arr)
+   % flip pb ordering to be coarse to fine
+   nlvls = numel(im_sizes);
+   % normalize eigenvectors
+   evecs = evecs_normalize(evecs);
+   % initialize per-scale spb array
+   spb_arr = cell([1 nlvls]);
+   % get finest level size
+   sz_fine = size(pb_arr{end});
+   % get number of elements at each level
+   ne = zeros([1 nlvls]);
+   for n = 1:nlvls
+      ne(n) = prod(size(pb_arr{n}));
+   end
+   ne_cum = cumsum(ne);
+   % get number of eigenvectors
+   m = size(evecs,2);
+   % extract spb
+   spbo = zeros([sz_fine 8]);
+   for n = 1:nlvls
+      % compute spb for current level
+      ne_offset = ne_cum(n) - ne(n);
+      sz = size(pb_arr{n});
+      [spb_lvl spbo_lvl] = evecs_to_edges( ...
+         reshape(evecs((1:ne(n))+ne_offset, 2:m), [sz (m-1)]), ...
+         1./sqrt(evals(2:m)) ...
+      );
+      spb_arr{n}  = spb_lvl;
+      spbo_arr{n} = sum(spbo_lvl,4);
+      spbo_arr{n} = spbo_arr{n}./(max(spbo_arr{n}(:)) + eps);
+      spbo = spbo + imresize(sum(spbo_lvl,4), sz_fine, 'bilinear');
+   end
+   % compute spb and spb nonmax
+   spb = max(spbo,[],3);
+   spb_nmax = nonmax_channels(spbo,pi/16);
+   % normalize
+   spb      = spb./max(spb(:) + eps);
+   spb_nmax = spb_nmax./max(spb_nmax(:) + eps);
+end
