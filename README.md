@@ -6,7 +6,7 @@ This software package implements the method described in:
 Phillip Isola, Daniel Zoran, Dilip Krishnan, and Edward H. Adelson
 ECCV, 2014
 
-The code takes an image as input and will attempt to find object boundaries in that image. The code can also be used to segment an image into coherent regions. For more details, please visit the project page here: http://web.mit.edu/phillipi/crisp_boundaries_
+The code takes an image as input and will attempt to find object boundaries in that image. The code can also be used to segment an image into coherent regions. For more details, please visit the project page here: http://web.mit.edu/phillipi/crisp_boundaries
 
 
 Installation
@@ -42,7 +42,7 @@ This package includes code from a few other libraries in the "toolboxes" folder.
 
 1. The Kernel Density Estimation Toolbox of Ihler and Mandel (http://www.ics.uci.edu/ihler/code/kde.html)
 2. The Multigrid Multiscale spectral clustering algorithm of Maire and Yu (https://github.com/mmaire/ae-multigrid)
-3. The DNcuts spectral clustering algorithm from Arbelaez et al. (http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/mcg/) -- this wasn't used in the paper, but speeds up spectral clustering quite a lot without sacrificing much accuracy
+3. The DNcuts algorithm from Arbelaez et al. (http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/mcg/) -- this wasn't used in the paper, but speeds up spectral clustering quite a lot without sacrificing much accuracy
 4. Selected files from the Berkeley Segmentation code base (http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html)
 
 Some of these files were modified for crisp boundaries. Please see notes in the Readme files under each toolbox subdirectory. Further code credit is given at the top of each source file.
