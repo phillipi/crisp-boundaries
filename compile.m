@@ -48,7 +48,7 @@ function [] = compile()
     
     %% install ucm segmentation
     if (ispc)
-        fprintf('Skipping UCM segmentation (not supported on Windows)");
+        fprintf('Skipping UCM segmentation (not supported on Windows)');
     else
         [~,E_oriented] = findBoundaries(test_im,type);
         try % check if pre-compiled binaries work
