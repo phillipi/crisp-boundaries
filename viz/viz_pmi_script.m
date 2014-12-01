@@ -1,3 +1,7 @@
+%% this script visualizes the luminace PMI function for an image, like in Figure 2 of the paper
+% note that the result is not deterministic, since the learning draws
+% random samples from the image; if you run this a few times you will see
+% that the results can vary considerably in the details
 
 %% setup
 compile;
