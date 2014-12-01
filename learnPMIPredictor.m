@@ -25,7 +25,7 @@ function [rf] = learnPMIPredictor(f_maps,p,opts)
     [ii,jj] = getLocalPairs(im_size,[],[],Nsamples);
     
     %% extract features
-    [F,F_unary] = extractF(f_maps,ii,jj);
+    [F,F_unary] = extractF(f_maps,ii,jj,opts);
     
     %% evaluate affinities
     pmi = evalPMI(p,F,F_unary,ii,jj,opts);

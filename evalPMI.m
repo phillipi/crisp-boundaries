@@ -1,4 +1,4 @@
-%% function [pmi,pJoint,pProd] = evalPMI(p,F,F_unaryA,F_unaryB,opts)
+%% function [pmi,pJoint,pProd] = evalPMI(p,F,F_unaryA,A_idx,B_idx,opts)
 %
 % INPUTS
 %  p        - model for P(A,B) (Eqn. 1 in paper)
@@ -24,8 +24,12 @@ function [pmi,pJoint,pProd] = evalPMI(p,F,F_unary,A_idx,B_idx,opts)
     %% evaluate p(A,B)
     reg = opts.p_reg;
     tol = opts.kde.kdtree_tol;
-    pJoint = reg + evaluate_batches(p,F',tol)/2; % divided by 2 since we only modeled half the space
-
+    if (opts.model_half_space_only)
+        pJoint = reg + evaluate_batches(p,F',tol)/2; % divided by 2 since we only modeled half the space
+    else
+        pJoint = reg + evaluate_batches(p,F',tol);
+    end
+    
     %% evaluate p(A)p(B)
     N = floor(size(F,2)/2); assert((round(N)-N)==0);
     p2_1 = marginal(p,1:N);

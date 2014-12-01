@@ -40,7 +40,7 @@ function [W] = buildW_pmi(f_maps,rf,p,opts,samples)
     W = sparse(double(ii),double(jj),0,Npixels,Npixels);
     
     %% extract features F
-    [F,F_unary] = extractF(f_maps,ii,jj);
+    [F,F_unary] = extractF(f_maps,ii,jj,opts);
     
     %% evaluate affinities
     if (opts.approximate_PMI)

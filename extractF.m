@@ -1,9 +1,10 @@
-%% function [F,F_unary] = extractF(f_maps,ii,jj)
+%% function [F,F_unary] = extractF(f_maps,ii,jj,opts)
 %
 % INPUTS
 %  f_maps - NxMxF array of F feature maps for an NxM image
 %  ii     - indices of samples for feature A
 %  jj     - indices of samples for feature B
+%  opts   - parameter settings (see setEnvironment)
 %  
 % OUTPUS
 % F        - each row is a feature pair {A,B}
@@ -16,7 +17,7 @@
 % Please email me if you find bugs, or have suggestions or questions
 % -------------------------------------------------------------------------
 
-function [F,F_unary] = extractF(f_maps,ii,jj)
+function [F,F_unary] = extractF(f_maps,ii,jj,opts)
 
     Npixels = numel(f_maps(:,:,1));
     
@@ -38,5 +39,7 @@ function [F,F_unary] = extractF(f_maps,ii,jj)
     
     %% order A and B so that we only have to model half the space (assumes
     % symmetry: p(A,B) = p(B,A))
-    F = orderAB(F);
+    if (opts.model_half_space_only)
+        F = orderAB(F);
+    end
 end
