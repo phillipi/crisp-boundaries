@@ -12,10 +12,10 @@ compile; % this will check to make sure everything is compiled properly; if it i
 
 %% choose parameter settings to evaluate
 %type = 'speedy'; 
-%type = 'accurate_low_res';
+type = 'accurate_low_res';
 %type = 'accurate_high_res';
 %type = 'accurate_multiscale';
-type = 'MS_algorithm_from_paper';
+%type = 'MS_algorithm_from_paper';
 
 %% paths (modify these to point where you want)
 DATA_DIR = 'PATH/TO/BSDS';
@@ -27,6 +27,7 @@ RESULTS_DIR = sprintf('../Results/%s',type);
 evalAll(IMG_DIR,GT_DIR,RESULTS_DIR,type);
 
 
+%% Below are the benchmark numbers you should get for each type of parameter settings
 %{
 ../Results/speedy
 Boundary
