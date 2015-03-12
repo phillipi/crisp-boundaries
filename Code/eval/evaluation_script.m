@@ -18,8 +18,7 @@ compile; % this will check to make sure everything is compiled properly; if it i
 type = 'MS_algorithm_from_paper';
 
 %% paths (modify these to point where you want)
-%DATA_DIR = '/Users/phillipisola/Documents/Research/Shape/ocfx/Data/';
-DATA_DIR = '~/ocfx/ocfx/Data/';
+DATA_DIR = 'PATH/TO/BSDS';
 IMG_DIR = fullfile(DATA_DIR,'BSR/BSDS500/data/images/test/');
 GT_DIR = fullfile(DATA_DIR,'BSR/BSDS500/data/groundTruth/test/');
 RESULTS_DIR = sprintf('../Results/%s',type);
